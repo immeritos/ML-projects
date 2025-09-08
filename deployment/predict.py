@@ -12,6 +12,14 @@ with open(model_file, 'rb') as f_in:
 
 app = Flask('churn')
 
+@app.get("/")
+def root():
+    return {"status": "ok"}, 200
+
+@app.get("/health")
+def health():
+    return "OK", 200
+
 @app.route('/predict', methods=['POST'])
 def predict():
     customer = request.get_json()
